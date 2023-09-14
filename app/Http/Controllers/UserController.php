@@ -33,6 +33,8 @@ class UserController extends Controller
     public function register(RegisterRequest $request)
     {
         User::registerUser($request);
+
+        return redirect('/');
     }
 
 }
