@@ -159,10 +159,13 @@ return [
     */
 
     'attributes' => [
+        /* 회원가입 페이지 */
         'user_name' => '이름',
         'user_email' => '이메일',
-        'user_password' => '패스워드',
-        'user_password_confirm' => '패스워드확인',
+        'user_password' => '비밀번호',
+        'user_password_confirm' => '비밀번호확인',
+
+        
     ],
 
 ];

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\User\RegisterRequest;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -20,8 +21,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'user_name',
+        'user_email',
         'password',
     ];
 
@@ -31,7 +32,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'user_password',
         'remember_token',
     ];
 
@@ -46,11 +47,10 @@ class User extends Authenticatable
 
     public function registerUser(RegisterRequest $request) {
         $user = new User();
-        $user_password = Crypt::encrypt($request->user_password);
 
         $user->user_name = $request->user_name;
         $user->user_email = $request->user_email;
-        $user->user_password = $user_password;
+        $user->user_password = Hash::make($request->user_password);
         $user->user_grade = 1;
 
         $user->save();
@@ -61,4 +61,26 @@ class User extends Authenticatable
         //     'user_password' => $request->user_password
         // ]);
     }
+
+
+
+    public function getAuthPassword()
+    {
+        return $this->user_password;
+    }
+
+    // public function getEmailAttribute()
+    // {
+    //     return $this->user_email;
+    // }
+
+    // public function validateCredentials(array $credentials)
+    // {
+    //     $plain = $credentials['password'];
+    //     return $this->hasher->check($plain, $this->getAuthPassword());
+    // }
+
+    // public function username() {
+    //     return "user_email";
+    // }
 }

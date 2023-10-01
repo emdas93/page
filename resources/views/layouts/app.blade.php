@@ -44,8 +44,17 @@
 							메뉴
 						</a>
 						<ul class="dropdown-menu dropdown-menu-lg-end">
+							@auth
+							<form action="{{route('user.logout')}}" method="post">
+								<li>
+									@csrf
+									<input class="dropdown-item" type='submit' value="로그아웃"/>
+								</li>
+							</form>		
+							@else
 							<li><a class="dropdown-item" href="{{route('user.loginView')}}">로그인</a></li>
 							<li><a class="dropdown-item" href="{{route('user.registerView')}}">회원가입</a></li>
+							@endauth
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="#">내 정보</a></li>
 						</ul>

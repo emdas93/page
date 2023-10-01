@@ -33,3 +33,4 @@ Route::get('/user/login', [UserController::class, 'loginView'])->name('user.logi
 Route::get('/user/register', [UserController::class, 'registerView'])->name('user.registerView');
 Route::post('/user/login', [UserController::class, 'login'])->name('user.login');
 Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
+Route::post('/user/logout', [UserController::class, 'logout'])->name('user.logout');
