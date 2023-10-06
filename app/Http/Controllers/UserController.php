@@ -29,6 +29,13 @@ class UserController extends Controller
         return view('user.register');
     } 
 
+    public function infoView(Request $request)
+    {
+        $data = [];
+        $data['userData'] = User::getUserInfo(Auth::user()->id);
+        return view('user.info', $data);
+    }
+
     public function login(LoginRequest $request)
     {
         $credentials = [
@@ -61,8 +68,6 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function userInfo(Request $request) {
-
-    }
+    
 
 }

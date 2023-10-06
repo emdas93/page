@@ -1,9 +1,19 @@
 @extends('../layouts.app')
 @section('contents')
 <div class="content-header">
-    <h3>소제목</h3>
+    <h3>{{ $boardTitle }}</h3>
+    <div class="board-select-area text-end">
+      <span>게시판 선택 : </span>
+      <select class="" id="boardSelect">
+          <option value="{{route('board.index')}}" @if($currentBoardId == 0) selected @endif>전체보기</option>
+        @foreach($boards as $board)
+          <option value="{{route('board.index', ['boardId' => $board->id])}}" @if($board->id == $currentBoardId) selected @endif >{{$board->board_name}}</option>
+        @endforeach
+      </select>
+    </div>
     <hr>
 </div>
+
 <div class="content">
     <table class="table table-hover">
         <thead>
@@ -15,59 +25,53 @@
           </tr>
         </thead>
         <tbody>
+          @foreach($posts as $post)
           <tr>
-            <th scope="row">10</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{$post->id}}</th>
+
+            <td><a href="{{route('board.postView', [
+              'boardId' => $post->board_id,
+              'pageNo' => $currentPage,
+              'postId' => $post->id
+            ])}}">{{$post->post_title}}</a></td>
+            
+            <td>{{$post->post_user_name}}</td>
+            <td>{{$post->created_at}}</td>
           </tr>
-          <tr>
-            <th scope="row">9</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">8</th>
-            <td colspan="2">Test Title</td>
-            <td>@twitter</td>
-          </tr>
-          <tr>
-            <th scope="row">7</th>
-            <td colspan="2">Not Enough Energy</td>
-            <td>@twitter</td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
+          @endforeach
+        </tbody>  
       </table>
+
+      <nav class="" aria-label="Page navigation example">
+        <ul class="pagination">
+          
+          @if($prevPageBlockEnd != -1)
+            <li class="page-item">
+              <a class="page-link" href="{{route('board.index', ['boardId' => $currentBoardId,'pageNo' => $prevPageBlockEnd])}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only"></span>
+              </a>
+            </li>
+          @endif
+
+          @for($i = $currentPageBlockStart; $i <= $currentPageBlockEnd; ++$i)
+           <li class="page-item @if($i == $currentPage) active @endif"><a class="page-link" href="{{route('board.index', ['boardId' => $currentBoardId,'pageNo' => $i]) }}">{{$i}}</a></li>
+          @endfor
+
+          @if($nextPageBlockStart != -1)
+            <li class="page-item">
+              <a class="page-link" href="{{route('board.index', ['boardId' => $currentBoardId,'pageNo' => $nextPageBlockStart])}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only"></span>
+              </a>
+            </li>
+          @endif
+        </ul>
+      </nav>
+
 </div>
+@endsection
+
+@section('javascriptAssets')
+<script src="{{asset('js/board/index.js')}}"></script>
 @endsection

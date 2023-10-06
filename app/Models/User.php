@@ -52,6 +52,7 @@ class User extends Authenticatable
         $user->user_email = $request->user_email;
         $user->user_password = Hash::make($request->user_password);
         $user->user_grade = 1;
+        $user->user_picture_path = 'path';
 
         $user->save();
 
@@ -60,6 +61,12 @@ class User extends Authenticatable
         //     'user_email' => $request->user_email,
         //     'user_password' => $request->user_password
         // ]);
+    }
+
+    public function getUserInfo($userId) {
+        $user = new User();
+        $user->id = $userId;
+        return $user->get();
     }
 
 
