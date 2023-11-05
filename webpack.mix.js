@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/board/index.js', 'public/js/board/index.js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .js('resources/js/moon/index.js', 'public/js/moon/index.js')
+    .postCss('resources/css/app.css', 'public/css')
+    .postCss('resources/css/moon/index.css', 'public/css/moon/index.css')
+    ;

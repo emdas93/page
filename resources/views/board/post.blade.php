@@ -15,8 +15,8 @@
 
 <div class="content-footer">
     <a href="{{route('board.index', [
-        'boardId' => $boardId,
-        'pageNo' => $pageNo
+        'board_id' => $board_id,
+        'page_no' => $page_no
     ])}}" class="btn btn-primary">{{__('board.list')}}</a>
 </div>
 

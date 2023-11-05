@@ -1,6 +1,8 @@
 /* Library Load */
 @import '~bootstrap';
-@import '~bootstrap-icons'; /*https://icons.getbootstrap.com/*/
+@import '~bootstrap-icons'; /* https://icons.getbootstrap.com/ */
+@import '/node_modules/aos/dist/aos.css';
+
 /* Header */
 
 /* sidebar */

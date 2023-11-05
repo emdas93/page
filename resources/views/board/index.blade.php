@@ -1,13 +1,13 @@
 @extends('../layouts.app')
 @section('contents')
 <div class="content-header">
-    <h3>{{ $boardTitle }}</h3>
+    <h3>{{ $board_title }}</h3>
     <div class="board-select-area text-end">
       <span>게시판 선택 : </span>
       <select class="" id="boardSelect">
-          <option value="{{route('board.index')}}" @if($currentBoardId == 0) selected @endif>전체보기</option>
+          <option value="{{route('board.index')}}" @if($current_board_id == 0) selected @endif>전체보기</option>
         @foreach($boards as $board)
-          <option value="{{route('board.index', ['boardId' => $board->id])}}" @if($board->id == $currentBoardId) selected @endif >{{$board->board_name}}</option>
+          <option value="{{route('board.index', ['board_id' => $board->id])}}" @if($board->id == $current_board_id) selected @endif >{{$board->board_title}}</option>
         @endforeach
       </select>
     </div>
@@ -30,9 +30,9 @@
             <th scope="row">{{$post->id}}</th>
 
             <td><a href="{{route('board.postView', [
-              'boardId' => $post->board_id,
-              'pageNo' => $currentPage,
-              'postId' => $post->id
+              'board_id' => $current_board_id,
+              'page_no' => $currentPage,
+              'post_id' => $post->id
             ])}}">{{$post->post_title}}</a></td>
             
             <td>{{$post->post_user_name}}</td>
@@ -47,7 +47,7 @@
           
           @if($prevPageBlockEnd != -1)
             <li class="page-item">
-              <a class="page-link" href="{{route('board.index', ['boardId' => $currentBoardId,'pageNo' => $prevPageBlockEnd])}}" aria-label="Previous">
+              <a class="page-link" href="{{route('board.index', ['board_id' => $current_board_id,'pageNo' => $prevPageBlockEnd])}}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only"></span>
               </a>
@@ -55,12 +55,12 @@
           @endif
 
           @for($i = $currentPageBlockStart; $i <= $currentPageBlockEnd; ++$i)
-           <li class="page-item @if($i == $currentPage) active @endif"><a class="page-link" href="{{route('board.index', ['boardId' => $currentBoardId,'pageNo' => $i]) }}">{{$i}}</a></li>
+            <li class="page-item @if($i == $currentPage) active @endif"><a class="page-link" href="{{route('board.index', ['board_id' => $current_board_id,'page_no' => $i]) }}">{{$i}}</a></li>
           @endfor
 
           @if($nextPageBlockStart != -1)
             <li class="page-item">
-              <a class="page-link" href="{{route('board.index', ['boardId' => $currentBoardId,'pageNo' => $nextPageBlockStart])}}" aria-label="Next">
+              <a class="page-link" href="{{route('board.index', ['board_id' => $current_board_id,'pageNo' => $nextPageBlockStart])}}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only"></span>
               </a>

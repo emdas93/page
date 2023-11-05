@@ -19,7 +19,7 @@ class BoardFactory extends Factory
         $userData = $user->get();
 
         return [
-            'board_name' => $this->faker->name(),
+            'board_title' => $this->faker->name(),
             'user_id' => $userData[0]->id,
             'parent_id' => 1,
         ];

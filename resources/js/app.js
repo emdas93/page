@@ -1,8 +1,10 @@
 require('./bootstrap');
 require('bootstrap');
+var AOS = require('aos');
 window.$ = require('jquery');
 
 $(document).ready(function(){
+    AOS.init();
     // Sidebar
     $('#sideBarToggleBtn').click(function(e) {
         if ($(this).hasClass("bi-list")) {		// Sidebar Open

@@ -1,0 +1,26 @@
+body{
+    background-color: black;
+}
+
+.book-content-preview img{
+    width:70%;
+
+}
+.book-content{
+    width:70%;
+    height: 5000px;
+    margin:auto;
+    background: linear-gradient(#08174c, #7785b0);
+}
+
+.book-content-middle{
+    width:70%;
+    background-color: #7785b0;
+    height:50000px;
+    margin:auto;
+}
+
+.devide-space{
+    margin-top: 600px;
+    margin-bottom: 600px;
+}

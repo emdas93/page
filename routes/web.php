@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MoonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,10 @@ use App\Http\Controllers\UserController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 /* 게시판 */
-Route::get('/board/index/{boardId?}', [BoardController::class, 'index'])->name('board.index');
-Route::get('/board/index/{boardId?}/{pageNo?}', [BoardController::class, 'index'])->name('board.index');
-Route::get('/board/post/{boardId}/{pageNo}/{postId}', [BoardController::class, 'postView'])->name('board.postView');
+Route::get('/board/index/{board_id?}', [BoardController::class, 'index'])->name('board.index');
+Route::get('/board/index/{board_id?}/{page_no?}', [BoardController::class, 'index'])->name('board.index');
+
+Route::get('/board/post/{board_id}/{page_no}/{post_id}', [BoardController::class, 'postView'])->name('board.postView');
 
 /* 유저 페이지 */
 Route::get('/user/login', [UserController::class, 'loginView'])->name('user.loginView');
@@ -37,3 +39,6 @@ Route::post('/user/login', [UserController::class, 'login'])->name('user.login')
 Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
 Route::post('/user/logout', [UserController::class, 'logout'])->name('user.logout');
 Route::get('/user/info', [UserController::class, 'infoView'])->name('user.infoView');
+
+/* 꼬망쥐 페이지 */
+Route::get('/moon/index', [MoonController::class, 'index'])->name('moon.index');

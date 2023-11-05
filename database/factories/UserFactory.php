@@ -19,7 +19,7 @@ class UserFactory extends Factory
             'user_email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             // 'user_password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'user_password' => '$2y$10$U8slbe28.GsPV2Rje6JTa.DiStfyCVLWgUKUiKGwrM3GoThjEkhC6', //  qweqwe12
+            'user_password' => '$2y$10$Oofh2Y1v2Mk14izNc6P.4.zSrlKnEyrAQgRAuhn4.Wyl7NVp42OXG', //  qweqwe12
             'user_grade' => 1,
             'user_picture_path' => 'image/profile/다운로드.jpeg',
             'remember_token' => Str::random(10),

@@ -15,7 +15,7 @@ class CreateBoardsTable extends Migration
     {
         Schema::create('boards', function (Blueprint $table) {
             $table->id();
-            $table->string('board_name'); // 게시판 이름
+            $table->string('board_title'); // 게시판 이름
             $table->foreignId('user_id')->cascadeOnUpdate()->cascadeOnDelete(); // 게시판 소유자
             $table->bigInteger('parent_id'); // ->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
